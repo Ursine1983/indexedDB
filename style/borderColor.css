@@ -1,0 +1,127 @@
+.Colorless {
+    border-color: silver;
+}
+
+.White {
+    border-color: #ffffea;
+}
+
+.Blue {
+    border-color: blue;
+}
+
+.Black {
+    border-color: black;
+}
+
+.Red {
+    border-color: red;
+}
+
+.Green {
+    border-color: green;
+}
+
+.Azorius {
+    border-image: linear-gradient(to left, #ffffea, blue) 1;
+}
+
+.Orzohv {
+    border-image: linear-gradient(to left, #ffffea, black) 1;
+}
+
+.Boros {
+    border-image: linear-gradient(to left, #ffffea, red) 1;
+}
+
+.Selesnya {
+    border-image: linear-gradient(to left, #ffffea, green) 1;
+}
+
+.Dimir {
+    border-image: linear-gradient(to left, blue, black) 1;
+}
+
+.Izzet {
+    border-image: linear-gradient(to left, blue, red) 1;
+}
+
+.Simic {
+    border-image: linear-gradient(to left, blue, green) 1;
+}
+
+.Rakdos {
+    border-image: linear-gradient(to left, black, red) 1;
+}
+
+.Golgari {
+    border-image: linear-gradient(to left, black, green) 1;
+}
+
+.Gruul {
+    border-image: linear-gradient(to left, green, red) 1;
+}
+
+.Esper {
+    border-image: linear-gradient(to left, #ffffea, blue, black) 1;
+}
+
+.Jeskai {
+    border-image: linear-gradient(to left, #ffffea, blue, red) 1;
+}
+
+.Bant {
+    border-image: linear-gradient(to left, #ffffea, blue, green) 1;
+}
+
+.Mardu {
+    border-image: linear-gradient(to left, #ffffea, black, red) 1;
+}
+
+.Abzan {
+    border-image: linear-gradient(to left, #ffffea, black, green) 1;
+}
+
+.Naya {
+    border-image: linear-gradient(to left, #ffffea, red, green) 1;
+}
+
+.Grixis {
+    border-image: linear-gradient(to left, blue, black, red) 1;
+}
+
+.Sultai {
+    border-image: linear-gradient(to left, blue, black, green) 1;
+}
+
+.Temur {
+    border-image: linear-gradient(to left, blue, red, green) 1;
+}
+
+.Jund {
+    border-image: linear-gradient(to left, black, red, green) 1;
+}
+
+.Glint-Eye {
+    border-image: linear-gradient(to left, blue, black, red, green) 1;
+}
+
+.Dune-Brood {
+    border-image: linear-gradient(to left, #ffffea, black, red, green) 1;
+}
+
+.Witch-Maw {
+    border-image: linear-gradient(to left, #ffffea, blue, black, green) 1;
+}
+
+.Yore-Triller {
+    border-image: linear-gradient(to left, #ffffea blue, black, red) 1;
+}
+
+.Ink-Treader {
+    border-image: linear-gradient(to left, #ffffea, blue, red, green) 1;
+}
+
+.Chroma {
+    border-image: linear-gradient(to left, #ffffea, blue, black, red, green) 1;
+}

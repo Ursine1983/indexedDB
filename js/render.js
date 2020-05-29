@@ -1,5 +1,9 @@
+/*
+Class to handle all render operations. Several methods in this class are too long and need to be refactored 
+*/
 class Render {
     constructor() {
+        //TODO: move object structures and defines to config files or the db
         this.pages = ["inventory", "decks", "wants"];
         this.cardListSorting = {
             "Colorless": {
@@ -325,12 +329,14 @@ class Render {
         }
     }
 
+    // initialise render process
     render = function(view, data) {
         if(this.pages.includes(view)) {
             this.renderPage(view, data);
         }
     }
 
+    // switch to render a page view with either card object lists or deck object lists
     renderPage = function(view, data) {
         if(view != "decks") {
             this.renderListView(view, data);
@@ -340,6 +346,7 @@ class Render {
         }
     }
 
+    // render a dialog
     static renderDialog = function(event) {
         if(document.querySelector("div.dialog")) {
             document.querySelector("div.dialog").remove();    
@@ -397,6 +404,7 @@ class Render {
         }
     }
 
+    // render list in dialog with no additional structure or formating
     static renderMissingCards = function(missingCardsArr) {
         missingCardsArr.forEach(function(missingCard) {
             let cardRow = document.createElement("span");
@@ -407,6 +415,7 @@ class Render {
         });
     }
 
+    // render list in dialog with additional structure or formating to visualise the deck object meta data
     static renderDeckList = function(data) {
         document.querySelector("div.dialog").classList.add("dialogWide");
         Object.keys(data).forEach(function(headline) {
@@ -441,6 +450,7 @@ class Render {
         });
     }
 
+    // build list from data encapsulated by a deck object
     static generateDeckLists = function() {
         let deckListContainerArr = document.querySelectorAll("div.statusOwned input:checked");
         let deckListArr = [];
@@ -473,6 +483,7 @@ class Render {
         return displayList;
     }
 
+    // render a view with a list of card objects
     renderListView = function(view, data) {
         let tmpSorting = this.cardListSorting;
 
@@ -542,6 +553,7 @@ class Render {
         });
     }
 
+    // render a view with a list of deck objects
     renderDecksView = function (data) {
         document.querySelector("div#decks div.content div.owned").innerHTML = "";
         document.querySelector("div#decks div.content div.unowned").innerHTML = "";
@@ -649,6 +661,7 @@ class Render {
         });
     }
 
+    // merge list data from deck objects to display combined lists
     static mergeDecklists = function(deckListArr, mergedDecklists) {
         let mergedList;
 
@@ -677,6 +690,7 @@ class Render {
         return mergedList;
     }
 
+    // visualise deck objects that can not be built due to currently selected permutation of other deck objects
     static disableDeck = function(elem) {
         elem.parentNode.parentNode.parentNode.querySelector(".deckLink").style.backgroundColor = "rgba(100,100,100,0.7)";
         elem.disabled = true;
@@ -684,6 +698,7 @@ class Render {
         elem.parentNode.querySelector(".slider").style.backgroundColor = "rgba(100,100,100,0.7)";
     }
 
+    // visualise deck objects that can be built due to currently selected permutation of other deck objects
     static enableDeck = function(elem) {
         elem.parentNode.parentNode.parentNode.querySelector(".deckLink").style.backgroundColor = "transparent";
         elem.disabled = false;
@@ -696,6 +711,7 @@ class Render {
         }
     }
 
+    // visualise a change in the value of the quantety property
     static updateQuantity = function (event) {
         let db = new DB();
         let target = event.target.parentNode.parentNode.querySelector("span.cardName").innerHTML;

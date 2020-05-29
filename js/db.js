@@ -1,3 +1,6 @@
+/*
+Class to handle all database operations. A client side IndexedDB is used.
+*/
 class DB {
     constructor() {
         let request = window.indexedDB.open("cimDB", 5);
@@ -11,6 +14,7 @@ class DB {
 
         };
 
+        // initialise database
         request.onupgradeneeded = function(event) {
             let db = event.target.result;
             
@@ -34,6 +38,7 @@ class DB {
             post.values.forEach(function(target) {
                 if(post.name == "inventory") {
                     dbInstance.select("inventory", target.cardName, function(store, data){
+                        // create new entry if non exists
                         if(data == undefined) {
                             let insertStore;
                             let transaction;
@@ -47,6 +52,7 @@ class DB {
                                 if(insertStore.name == "inventory") {
                                     let db = new DB();
                                     
+                                    // remove cards from wants when they are added to the inventory
                                     db.updateQuantity("subtract", target.quantity, target.cardName, "wants", false);
                                 }
                             };
@@ -55,6 +61,7 @@ class DB {
                                 console.log(event);
                             }
                         }
+                        // update entry if it already exists
                         else {
                             dbInstance.updateQuantity("add", target.quantity, target.cardName, "inventory", false);
                         }
@@ -77,6 +84,7 @@ class DB {
         }
     }
 
+    // insert a deck object
     insertDeck(post) {
         let request = window.indexedDB.open("cimDB");
         
@@ -93,7 +101,6 @@ class DB {
 
                 post.values.forEach(function(target) {
                     db.select("inventory", target.cardName, function(store, data){
-                        //console.log(data);
                         if(data == undefined) {
                             let tmpPost = {
                                 "name": "wants",
@@ -102,10 +109,6 @@ class DB {
                             
                             db.insert(tmpPost);
                         }
-
-                        //if(data /*quantity*/) {
-
-                        //}
                     });
                 });
             };
@@ -118,6 +121,7 @@ class DB {
         request.onsuccess = function(event) {
             let db = request.result;
 
+            // select all if target is not specified
             if(target == undefined) {
                 db.transaction(store).objectStore(store).getAll().onsuccess = function(event) {
                     callback(store, event.target.result);
@@ -131,6 +135,7 @@ class DB {
         }
     }
 
+    // update the quantity property independant of the pervious value via amount + direction
     updateQuantity(direction, amount, target, store, manual) {
         let request = window.indexedDB.open("cimDB");
 
@@ -183,6 +188,7 @@ class DB {
         }; 
     }
 
+    // query to check if selection matches with inventory and quantety
     compare(input, store, callback) {
         let request = window.indexedDB.open("cimDB");
 

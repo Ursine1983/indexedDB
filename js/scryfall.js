@@ -1,3 +1,6 @@
+/*
+Class to handle the API call. The return values are transformed into the card objects used in the tool
+*/
 class Scryfall {
     constructor() {}
 
@@ -13,10 +16,13 @@ class Scryfall {
 
                 parsedResponse.data.forEach(function(el) {
                     let colorId = el.color_identity;
+
+                    // check is the data is of a specialised type that has a differing JSON layout
                     if(el.hasOwnProperty("card_faces") && el.layout != "adventure") {
                         el = el.card_faces[0];
                     }
                     
+                    // transform data
                     for(let i = 0; i < tmpCardNames.identifiers.length; i++) {
                         if(tmpCardNames.identifiers[i].name.toLowerCase() == el.name.toLowerCase()) {
                             let tmpColor;
@@ -29,6 +35,7 @@ class Scryfall {
                      
                             tmpTypeArray = el.type_line.split(String.fromCharCode(8212))[0].trim().split(" ");
 
+                            // apply weighted type assignment. Some data has multiple types when it returns
                             if(tmpTypeArray.includes("Legendary") && tmpTypeArray.includes("Creature")) {
                                 tmpType = "Legendary";
                             } 
@@ -54,6 +61,7 @@ class Scryfall {
                                 tmpType = "Sorcery";
                             }
                             
+                            // populate card object
                             cardInfo.push({
                                 "name": el.name,
                                 "cardInfo": {

@@ -1,3 +1,6 @@
+/* 
+WIP - not yet implemented
+*/
 class Filter {
     constructor() {
         document.querySelector("a#applyFilter").addEventListener("click", function() {

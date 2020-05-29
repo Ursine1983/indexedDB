@@ -1,3 +1,6 @@
+/*
+Class to handle resolving color ids to strings
+ */
 class ColorMap {
     constructor() {
         this.colorMap = {

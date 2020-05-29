@@ -1,4 +1,8 @@
+/*
+Gerneral functions and code
+*/
 document.addEventListener("DOMContentLoaded", function(event) {
+    // Setup navigation and navigation highlighting
     let nav = document.querySelectorAll("nav span a");
 
     Array.from(nav).forEach(link => {
@@ -15,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
     });
 
+    // eventhandlers to trigger data selection on navigation
     document.querySelector("a[name='#inventory']").addEventListener("click", function() {
         select("inventory");
     });
@@ -27,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         select("decks");
     });
 
+    // eventhandler to handle data input form behaviour for different input types
     document.querySelector("select[name='inputType']").addEventListener('change', function(event) {
         let deckInfo = document.querySelector("div.deckInfo");
         let textarea = document.querySelector("textarea");
@@ -41,10 +47,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     });
 
+    // eventhandler to trigger render of dialogs
     document.querySelector("span.displayList").addEventListener('click', function(event) {
         Render.renderDialog(event);
     });
 
+    // function to insert data into the db
     function insertIntoDB(cardInfo, post) {
         let enrichedPost = {};
 
@@ -66,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         db.insert(enrichedPost);
     }
 
+    // function to select data from the db
     function select(store, target) {
         let db = new DB();
         db.select(store, target, function(store, data){
@@ -74,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
     }
 
+    // function to handle the form submit on the import page 
     function handleSubmit(e) {
         e.preventDefault();
         let page = document.location.hash;
@@ -91,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         post.name = tableName;
         post.values = [];
 
+        // handle deck submits
         if(tableName == "decks") {
             fetchingDecklist = true;
             post.deckName = document.querySelector("input[name='deckName']").value;
@@ -99,8 +110,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
             post.deckLink = document.querySelector("input[name='deckLink']").value;
             handleDecklist(post, inputArr);
         }
+        // handle non-deck submits
         else {
             while(idx < inputArr.length) {
+                // split sumbits into chunks. API has a size limit per request
                 if(idx + 50 > inputArr.length) {
                     idxMax = inputArr.length;
                 }
@@ -127,7 +140,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 }
                 
                 let scryfall = new Scryfall();
-            
+                
+                // make API call and write to db on callback
                 scryfall.call(tmpCardNames).then(function (cardInfo) {
                     insertIntoDB(cardInfo, post);
                 });
@@ -135,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
 
+    // function to handle the API and db calls needed to write a deck object
     function handleDecklist(post, inputArr) {
         let count = inputArr.length;
         let scryfall = new Scryfall();
@@ -168,8 +183,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
 
+    // event handler to handle the form submit
     document.getElementsByName("submitInsert")[0].addEventListener("click", handleSubmit);
 
+    // handle one page navigation
     let hash = document.location.hash;
 
     if(!hash) {

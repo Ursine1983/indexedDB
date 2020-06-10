@@ -83,6 +83,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
     }
 
+    // resolve input strings into quantity and cardName properties
+    function inputStringResolve(inputStr) {
+        let retObj = {};
+        let retValQ = inputStr.split(/ (.+)/)[0].split("x")[0];
+        let retValN;
+        
+        if(isNaN(parseInt(retValQ))) {
+            retValQ = 1;
+            retValN = inputStr;
+        }
+        else {
+            retValN = inputStr.split(/ (.+)/)[1];
+        }
+
+        retObj.quantity = retValQ;
+        retObj.cardName = retValN;
+
+        return retObj;
+    }
+
     // function to handle the form submit on the import page 
     function handleSubmit(e) {
         e.preventDefault();
@@ -132,9 +152,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 };
     
                 for(let j = 0; j < tmpInputArr[i].length; j++) {
-                    let quantity = tmpInputArr[i][j].split(/ (.+)/)[0].split("x")[0];
-                    let cardName = tmpInputArr[i][j].split(/ (.+)/)[1];
-                    
+                    let resolvedString = inputStringResolve(tmpInputArr[i][j]);
+                    let quantity = resolvedString.quantity;
+                    let cardName = resolvedString.cardName;
+                    console.log(resolvedString);
                     tmpCardNames.identifiers.push({"name": cardName});
                     post.values.push({"quantity": quantity, "cardName": cardName}); 
                 }
@@ -159,8 +180,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 "identifiers": []
             };
 
-            let quantity = inputArr[i].split(/ (.+)/)[0].split("x")[0];
-            let cardName = inputArr[i].split(/ (.+)/)[1];
+            let resolvedString = inputStringResolve(tmpInputArr[i][j]);
+            let quantity = resolvedString.quantity;
+            let cardName = resolvedString.cardName;
             
             tmpCardNames.identifiers.push({"name": cardName});
             post.values.push({"quantity": quantity, "cardName": cardName});

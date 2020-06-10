@@ -389,3 +389,30 @@ hr {
     box-shadow: 3px 3px 5px #ccc;
     cursor: pointer;
 }
+
+.filter {
+    position: absolute;
+    top: 60px;
+    right: 5%;
+    cursor: pointer;
+}
+
+.filterIcon {
+    width: 35px;
+    height: 4px;
+    background-color: #5f9ea0;
+    margin: 4px 0;
+    border-radius: 10px;
+    border: 1px solid #5f9ea0;
+    box-shadow: inset 2px 2px 2px #375b5d;
+}
+
+}
+
+.filterWrapper {
+    position: absolute;
+    top: 50px;
+    width: 150px;
+    left: 50%;
+    margin-left: -75px;
+}

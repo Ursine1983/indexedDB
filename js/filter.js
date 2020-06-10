@@ -28,6 +28,6 @@ class Filter {
     }
 
     filter = function (data, filterObj) {
-
+        
     }
 }

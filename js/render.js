@@ -735,4 +735,15 @@ class Render {
 
         db.updateQuantity(direction, amount, target, store, true);
     }
+
+    static renderFilter(view) {
+        if(document.querySelector("div.filterWrapper") != null) {
+            document.querySelector("div.filterWrapper").remove();
+        }
+        else {
+            let t1 = document.querySelector('#filter');
+            let clone1 = document.importNode(t1.content, true);
+            document.querySelector("div" + view + " h1.pageHeadline").after(clone1);       
+        }
+    }
 }

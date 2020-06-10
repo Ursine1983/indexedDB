@@ -17,6 +17,11 @@
             <span><a href="index.html#inventory" name="#inventory">Inventory</a></span>
             <span><a href="index.html#wants" name="#wants">Wants</a></span>
             <span><a href="index.html#import" name="#import">Import</a></span>
+            <div class="filter">
+                <div class="filterIcon"></div>
+                <div class="filterIcon"></div>
+                <div class="filterIcon"></div>
+            </div>
         </nav>
 <!--display deck elements as images with popup view for containes lists-->
         <div class="wrapper" id="decks">
@@ -83,6 +88,15 @@
                     <input type="text" class="quantity">
                     <span class="plus">+</span>
                 </div>
+            </div>
+        </template>
+        <template id="filter">
+            <div class="filterWrapper">
+                <label>White</label><input type="checkbox">
+                <label>Blue</label><input type="checkbox">
+                <label>Black</label><input type="checkbox">
+                <label>Red</label><input type="checkbox">
+                <label>Green</label><input type="checkbox">
             </div>
         </template>
     </body>

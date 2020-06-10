@@ -52,6 +52,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         Render.renderDialog(event);
     });
 
+    // eventhandler to open filter menu
+    document.querySelector("div.filter").addEventListener('click', function(event) {
+        let view = document.location.hash;
+        Render.renderFilter(view);
+    });
+
     // function to insert data into the db
     function insertIntoDB(cardInfo, post) {
         let enrichedPost = {};

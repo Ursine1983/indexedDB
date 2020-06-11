@@ -16,7 +16,7 @@ class Filter {
             let filterObj = Filter.getFilterObj();
             let render = new Render();
             data = Filter.filter(data, filterObj);
-            
+            console.log(data);
             render.render(store, data);
         });
     }
@@ -32,17 +32,23 @@ class Filter {
             };
         });
 
-        let foo = Filter.combi(colorFilter.sort(), []);
-console.log(foo);
-        filterObj.colorFilter = colorFilter;
+        let resolvedNames = Filter.combi(colorFilter.sort(), []);
+        resolvedNames["Colorless"] = 'C';
+        filterObj.colorFilter = resolvedNames;
 
         return filterObj;
     }
 
     static filter = function (data, filterObj) {
-        console.log(data, filterObj);
+        let tmpData = [];
 
-        return data;
+        data.forEach(function(val) {
+            if(filterObj.colorFilter.hasOwnProperty(val.info.color)) {
+                tmpData.push(val);
+            }
+        });
+
+        return tmpData;
     }
 
     static combi = function(filter, retObj = {}) {

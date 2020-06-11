@@ -4,6 +4,7 @@ Gerneral functions and code
 document.addEventListener("DOMContentLoaded", function(event) {
     // Setup navigation and navigation highlighting
     let nav = document.querySelectorAll("nav span a");
+    let hash = document.location.hash;
 
     Array.from(nav).forEach(link => {
         link.addEventListener("click", function(event) {
@@ -54,8 +55,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // eventhandler to open filter menu
     document.querySelector("div.filter").addEventListener('click', function(event) {
-        let view = document.location.hash;
-        Render.renderFilter(view);
+        Render.renderFilter(hash);
     });
 
     // function to insert data into the db
@@ -215,8 +215,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.getElementsByName("submitInsert")[0].addEventListener("click", handleSubmit);
 
     // handle one page navigation
-    let hash = document.location.hash;
-
     if(!hash) {
         document.querySelector("nav span a[name='#decks']").click();
     }

@@ -742,8 +742,10 @@ class Render {
         }
         else {
             let t1 = document.querySelector('#filter');
+            t1.content.querySelector("div.filterWrapper").setAttribute('data-view', view.split('#')[1]);
             let clone1 = document.importNode(t1.content, true);
-            document.querySelector("div" + view + " h1.pageHeadline").after(clone1);       
+            document.querySelector("div" + view + " h1.pageHeadline").after(clone1);
+            let filter = new Filter();       
         }
     }
 }

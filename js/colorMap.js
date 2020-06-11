@@ -51,4 +51,15 @@ class ColorMap {
                 return this.colorMap[tmpColorSelector];
         }
     }
+
+    colorStringToName(colorString) {        
+        switch(colorString.length) {
+            case 0: 
+                    return "Colorless";
+            case 5:
+                    return "Chroma";
+            default:
+                    return this.colorMap[colorString];
+        }
+    }
 }

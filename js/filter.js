@@ -24,6 +24,7 @@ class Filter {
         let filterObj = {};
         let colorFilter = [];
         let colorCheckboxes = document.querySelectorAll(".color");
+        let typeCheckboxes = document.querySelectorAll(".type");
 
         colorCheckboxes.forEach(function(val) {
             if(val.checked) {
@@ -32,20 +33,29 @@ class Filter {
         });
 
         let resolvedNames = Filter.combi(colorFilter.sort(), []);
-        resolvedNames["Colorless"] = 'C';
-        filterObj.colorFilter = resolvedNames;
-
-        filterObj.typeFilter = {
-            "Legendary": 1,
-            "Land": 1,
-            "Creature": 1,
-            "Artifact": 1,
-            "Enchantment": 1,
-            "Planeswalker": 1,
-            "Instant": 1,
-            "Sorcery": 1
+        
+        if(Object.keys(resolvedNames).length == 0) {
+            filterObj.colorFilter = {
+                "any": true
+            }
         }
+        else {
+            resolvedNames["Colorless"] = 'C';
+            filterObj.colorFilter = resolvedNames;
+            filterObj.colorFilter["any"] = false;
+        }
+        
+        filterObj.typeFilter = {
+            "any": true
+        };
 
+        typeCheckboxes.forEach(function(val) {
+            if(val.checked) {
+                filterObj.typeFilter["any"] = false;
+                filterObj.typeFilter[val.name] = 1;
+            }
+        });
+        
         return filterObj;
     }
 
@@ -53,12 +63,11 @@ class Filter {
         let tmpData = [];
 
         data.forEach(function(val) {
-            if(filterObj.colorFilter.hasOwnProperty(val.info.color)) {
-                tmpData.push(val);
-            }
-
-            if(filterObj.typeFilter.hasOwnProperty(val.info.type)) {
-                tmpData.push(val);
+            console.log(filterObj.colorFilter);
+            if(filterObj.colorFilter.hasOwnProperty(val.info.color) || filterObj.colorFilter.any) {
+                if(filterObj.typeFilter.hasOwnProperty(val.info.type) || filterObj.typeFilter.any) {
+                    tmpData.push(val);
+                }
             }
         });
 

@@ -93,26 +93,26 @@
         </template>
         <template id="filter">
             <div class="filterWrapper">
-                <fieldset>
+                <fieldset class="colorIdentity">
                     <legend>Color Identity</legend>
-                    <label>White</label><input type="checkbox" class="color" name="W">
-                    <label>Blue</label><input type="checkbox" class="color" name="U">
-                    <label>Black</label><input type="checkbox" class="color" name="B">
-                    <label>Red</label><input type="checkbox" class="color" name="R">
-                    <label>Green</label><input type="checkbox" class="color" name="G">
+                    <input type="checkbox" class="color" name="W" id="filterW"><label for="filterW" class="labelW"></label>
+                    <input type="checkbox" class="color" name="U" id="filterU"><label for="filterU" class="labelU"></label>
+                    <input type="checkbox" class="color" name="B" id="filterB"><label for="filterB" class="labelB"></label>
+                    <input type="checkbox" class="color" name="R" id="filterR"><label for="filterR" class="labelR"></label>
+                    <input type="checkbox" class="color" name="G" id="filterG"><label for="filterG" class="labelG"></label>
                 </fieldset>
-                <fieldset>
+                <fieldset class="cardType">
                     <legend>Card Type</legend>
-                    <label>Legendary</label><input type="checkbox" class="color" name="Legendary">
-                    <label>Land</label><input type="checkbox" class="color" name="Land">
-                    <label>Creature</label><input type="checkbox" class="color" name="Creature">
-                    <label>Artifact</label><input type="checkbox" class="color" name="Artifact">
-                    <label>Enchantment</label><input type="checkbox" class="color" name="Enchantment">
-                    <label>Planeswalker</label><input type="checkbox" class="color" name="Planeswalker">
-                    <label>Instant</label><input type="checkbox" class="color" name="Instant">
-                    <label>Sorcery</label><input type="checkbox" class="color" name="Sorcery">
+                    <label>Legendary</label><input type="checkbox" class="type" name="Legendary">
+                    <label>Land</label><input type="checkbox" class="type" name="Land">
+                    <label>Creature</label><input type="checkbox" class="type" name="Creature">
+                    <label>Artifact</label><input type="checkbox" class="type" name="Artifact">
+                    <label>Enchantment</label><input type="checkbox" class="type" name="Enchantment">
+                    <label>Planeswalker</label><input type="checkbox" class="type" name="Planeswalker">
+                    <label>Instant</label><input type="checkbox" class="type" name="Instant">
+                    <label>Sorcery</label><input type="checkbox" class="type" name="Sorcery">
                 </fieldset>
-                <input type="submit" class="applyFilter">
+                <input type="submit" class="applyFilter" value="Filter">
             </div>
         </template>
     </body>

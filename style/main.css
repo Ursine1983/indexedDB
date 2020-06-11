@@ -407,12 +407,108 @@ hr {
     box-shadow: inset 2px 2px 2px #375b5d;
 }
 
+.filterWrapper {
+    position: relative;
+    top: 20px;
+    width: 638px;
+    left: 50%;
+    margin-left: -315px;
 }
 
-.filterWrapper {
-    position: absolute;
-    top: 50px;
-    width: 150px;
+.colorIdentity,
+.cardType {
+    border-radius: 10px;
+    background-color: whitesmoke;
+    box-shadow: 5px 5px 10px #aaa;
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.cardType {
+    margin-left: 30px;
+    width: 400px;
+}
+
+.colorIdentity input[type="checkbox"] {
+    display: none;
+}
+
+.labelW,
+.labelU,
+.labelB,
+.labelR,
+.labelG {
+    width: 25px;
+    height: 25px;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 20px;
+    opacity: 0.4;
+    position: relative;
+}
+
+.labelW {
+    background-image: url('../img/white.png');
+    left: 32%;
+    top: -5%;
+}
+
+.labelU {
+    background-image: url('../img/blue.png');
+    left: 57%;
+    top: -5%;
+}
+
+.labelB {
+    background-image: url('../img/black.png');
+    left: 46%;
+    top: 2%;
+}
+
+.labelR {
+    background-image: url('../img/red.png');
+    top: -20%;
+    left: 18%;
+}
+
+.labelG {
+    background-image: url('../img/green.png');
+    top: -72%;
+    left: 8%;
+}
+
+.colorIdentity input[type="checkbox"]:checked + label {
+    opacity: 1;
+}
+
+legend {
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+}
+
+.applyFilter {
+    width: 100px;
+    background-color: #5f9ea0;
+    color: snow;
+    border-radius: 5px;
+    border: none;
+    height: 20px;
+    font-size: 18px;
+    position: relative;
     left: 50%;
-    margin-left: -75px;
+    margin-left: -50px;
+    margin-bottom: 20px;
+}
+
+.cardType label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    width: 110px;
+    display: inline-block;
+    margin-left: 25px;
+    margin-top: 10px;
 }

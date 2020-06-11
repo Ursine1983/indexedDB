@@ -16,7 +16,6 @@ class Filter {
             let filterObj = Filter.getFilterObj();
             let render = new Render();
             data = Filter.filter(data, filterObj);
-            console.log(data);
             render.render(store, data);
         });
     }
@@ -36,6 +35,17 @@ class Filter {
         resolvedNames["Colorless"] = 'C';
         filterObj.colorFilter = resolvedNames;
 
+        filterObj.typeFilter = {
+            "Legendary": 1,
+            "Land": 1,
+            "Creature": 1,
+            "Artifact": 1,
+            "Enchantment": 1,
+            "Planeswalker": 1,
+            "Instant": 1,
+            "Sorcery": 1
+        }
+
         return filterObj;
     }
 
@@ -44,6 +54,10 @@ class Filter {
 
         data.forEach(function(val) {
             if(filterObj.colorFilter.hasOwnProperty(val.info.color)) {
+                tmpData.push(val);
+            }
+
+            if(filterObj.typeFilter.hasOwnProperty(val.info.type)) {
                 tmpData.push(val);
             }
         });

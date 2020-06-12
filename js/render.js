@@ -737,6 +737,12 @@ class Render {
     }
 
     static renderFilter(view) {
+        let hasFilter = {
+            "#deck": false,
+            "#wants": true,
+            "#inventory": true,
+            "#import": false
+        }
         let doRender = false;
         if(document.querySelector("div.filterWrapper") != null) {
             if(document.querySelector("div" + view + " div.filterWrapper") == null) {
@@ -749,7 +755,7 @@ class Render {
             doRender = true;
         }
         
-        if(doRender) {
+        if(doRender && hasFilter[view]) {
             let t1 = document.querySelector('#filter');
             t1.content.querySelector("div.filterWrapper").setAttribute('data-view', view.split('#')[1]);
             let clone1 = document.importNode(t1.content, true);

@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             let tmpCardNames = {
                 "identifiers": []
             };
-                
+
             let resolvedString = inputStringResolve(inputArr[i]);
             let quantity = resolvedString.quantity;
             let cardName = resolvedString.cardName;

@@ -737,10 +737,19 @@ class Render {
     }
 
     static renderFilter(view) {
+        let doRender = false;
         if(document.querySelector("div.filterWrapper") != null) {
+            if(document.querySelector("div" + view + " div.filterWrapper") == null) {
+                doRender = true;
+            }
+
             document.querySelector("div.filterWrapper").remove();
         }
         else {
+            doRender = true;
+        }
+        
+        if(doRender) {
             let t1 = document.querySelector('#filter');
             t1.content.querySelector("div.filterWrapper").setAttribute('data-view', view.split('#')[1]);
             let clone1 = document.importNode(t1.content, true);

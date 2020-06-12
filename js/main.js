@@ -23,14 +23,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // eventhandlers to trigger data selection on navigation
     document.querySelector("a[name='#inventory']").addEventListener("click", function() {
         select("inventory");
+        hash = "#inventory";
     });
 
     document.querySelector("a[name='#wants']").addEventListener("click", function() {
         select("wants");
+        hash = "#wants";
     });
 
     document.querySelector("a[name='#decks']").addEventListener("click", function() {
         select("decks");
+        hash = "#decks";
     });
 
     // eventhandler to handle data input form behaviour for different input types

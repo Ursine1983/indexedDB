@@ -615,6 +615,13 @@ class Render {
                                         let uncheckedInputs = document.querySelectorAll("div.statusOwned input[type=checkbox]:not(:checked)");
                                         let deckListArr = [];
 
+                                        if(checkedInputs.length > 0) {
+                                            document.querySelector(".displayList").style.display = "inline-block";
+                                        }
+                                        else {
+                                            document.querySelector(".displayList").style.display = "none";
+                                        }
+
                                         checkedInputs.forEach(function(el) {
                                             deckListArr.push(JSON.parse(el.parentNode.parentNode.parentNode.dataset.deckInfo));
                                             Render.enableDeck(el);

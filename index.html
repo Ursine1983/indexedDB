@@ -11,6 +11,7 @@
         <script src="js/render.js"></script>
         <script src="js/main.js"></script>
         <script src="js/filter.js"></script>
+        <script src="js/deckBuilder.js"></script>
     </head>
     <body>
         <nav>
@@ -18,6 +19,11 @@
             <span><a href="index.html#inventory" name="#inventory">Inventory</a></span>
             <span><a href="index.html#wants" name="#wants">Wants</a></span>
             <span><a href="index.html#import" name="#import">Import</a></span>
+            <div class="deck">
+                <div class="deckIcon card1"></div>
+                <div class="deckIcon card2"></div>
+                <div class="deckIcon card3"></div>
+            </div>
             <div class="filter">
                 <div class="filterIcon"></div>
                 <div class="filterIcon"></div>
@@ -39,6 +45,7 @@
         <div class="wrapper" id="inventory">
             <h1 class="pageHeadline">Inventory</h1>
             <div class="content"></div>
+            <div class="sideBar"></div>
         </div>
 <!--display want list as images with quantity control elements-->
         <div class="wrapper" id="wants">
@@ -114,6 +121,21 @@
                 </fieldset>
                 <input type="submit" class="applyFilter" value="Filter">
             </div>
+        </template>
+        <template id="deckMetaInfo">
+            <h3>Deck Builder</h3>
+            <div class="deckBuilderDeckInfo">
+                <label for="deckName">Deck Name:</label><input type="text" name="deckName">
+                <label for="thumbnailUrl">Thumbnail URL:</label><input type="text" name="thumbnailUrl">
+                <label for="commanderName">Commander:</label><input type="text" name="commanderName">
+                <label for="deckLink">Deck Link:</label><input type="text" name="deckLink">
+            </div>
+        </template>
+        <template id="deckBuilder">
+            <div class="deckBuilder">
+                
+            </div>
+            <input class="deckBuilderSave" type="submit" value="Save Deck">
         </template>
     </body>
 </html>

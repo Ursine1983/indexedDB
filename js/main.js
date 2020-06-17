@@ -22,16 +22,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // eventhandlers to trigger data selection on navigation
     document.querySelector("a[name='#inventory']").addEventListener("click", function() {
+        document.querySelector("div.deck").classList.add("show");
         select("inventory");
         hash = "#inventory";
     });
 
     document.querySelector("a[name='#wants']").addEventListener("click", function() {
+        document.querySelector("div.deck").classList.remove("show");
         select("wants");
         hash = "#wants";
     });
 
     document.querySelector("a[name='#decks']").addEventListener("click", function() {
+        document.querySelector("div.deck").classList.remove("show");
         select("decks");
         hash = "#decks";
     });
@@ -59,6 +62,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // eventhandler to open filter menu
     document.querySelector("div.filter").addEventListener('click', function(event) {
         Render.renderFilter(hash);
+    });
+
+    document.querySelector("div.deck").addEventListener('click', function() {
+        let deckBuidler = new DeckBuilder();
+
+        deckBuidler.render();
     });
 
     // function to insert data into the db
@@ -219,9 +228,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // handle one page navigation
     if(!hash) {
+        document.querySelector("div.deck").classList.remove("show");
         document.querySelector("nav span a[name='#decks']").click();
     }
     else {
+        if(hash == "#inventory") {
+            document.querySelector("div.deck").classList.add("show");
+        }
+        else {
+            document.querySelector("div.deck").classList.remove("show");
+        }
+
         document.querySelector("nav span a[name='" + hash + "']").click();
     }
+
+
 });

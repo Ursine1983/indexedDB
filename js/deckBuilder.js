@@ -8,6 +8,19 @@ class DeckBuilder {
             thumbnailUrl: "",
             values: []
         };
+
+        let cards = document.querySelectorAll(".cardWrapperSingle");
+        
+        cards.forEach(function(val) {
+            console.log(this);
+            if(val.hasOwnProperty('data-addCardEvent') && val.getAttribute('data-addCardEvent')) {
+                val.removeEventListener('click', DeckBuilder.addCard);
+            }
+            
+            val.addEventListener('click', DeckBuilder.addCard);
+
+            val.setAttribute('data-addCardEvent', true);
+        });
     }
 
     render = function() {
@@ -26,5 +39,10 @@ class DeckBuilder {
             document.querySelector("div.sideBar").appendChild(clone2);
         }
         
+    }
+
+    static addCard = function(event) {
+        console.log('foo');
+        console.log(event);
     }
 }
